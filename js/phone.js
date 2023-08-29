@@ -15,6 +15,18 @@ const phoneContainer = document.getElementById('phone-container');
 // auto clearing previous search
 phoneContainer.textContent = '';
 
+const showAllContainer = document.getElementById('show-all-container');
+if(phones.length >12){
+showAllContainer.classList.remove('hidden')
+}
+else{
+    showAllContainer.classList.add('hidden')
+}
+
+phones = phones.slice(0,12);
+
+console.log(phones.length)
+
 phones.forEach(phone => {
     console.log(phone)
     
@@ -38,6 +50,12 @@ phones.forEach(phone => {
 // handle search btn:
 const clickHandler = () =>{
     const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    console.log(searchText);
+    loadPhone(searchText);
+}
+const clickHandler2 = () =>{
+    const searchField = document.getElementById('search-field2')
     const searchText = searchField.value;
     console.log(searchText);
     loadPhone(searchText);
