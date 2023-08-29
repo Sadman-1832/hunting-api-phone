@@ -12,13 +12,20 @@
 </head>
 
 <body>
-    <header>
+    <header class="text-white font-medium m-8">
         <h1 class="text-5xl">Phone Hunter</h1>
     </header>
 
-   <main class="container mx-auto">
+   <main class="container mx-auto mt-12">
+    <!-- searchbox -->
+    <section class="bg-gray-100 p-4 m-2">
+        <input id="search-field" type="text" placeholder="search..." class="w-full max-w-xs p-2 bg-slate-900 rounded-md"/>
+        <button onclick="clickHandler()" class="btn btn-secondary ">Search</button>
+    </section>
+
+    <!-- search result -->
     <section>
-        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4">
+        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 p-4">
             
         </div>
     </section>
