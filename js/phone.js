@@ -23,6 +23,7 @@ else{
     showAllContainer.classList.add('hidden')
 }
 
+// slice for show limited items
 phones = phones.slice(0,12);
 
 console.log(phones.length)
@@ -45,20 +46,37 @@ phones.forEach(phone => {
         // step-4: appendChild
        phoneContainer.appendChild(phoneCard);
 
-})
+});
+// hide loadingSpinner
+toggleLoadingSpinner(false)
 }
+
 // handle search btn:
 const clickHandler = () =>{
+    toggleLoadingSpinner(true);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     console.log(searchText);
     loadPhone(searchText);
 }
+// handle search recap
 const clickHandler2 = () =>{
+    
     const searchField = document.getElementById('search-field2')
     const searchText = searchField.value;
     console.log(searchText);
+    toggleLoadingSpinner(true);
     loadPhone(searchText);
+}
+
+const toggleLoadingSpinner = (isLoading)=>{
+    const loadingSpinner = document.getElementById('loading-spinner');
+   if(isLoading){
+    loadingSpinner.classList.remove('hidden')
+   }
+   else{
+    loadingSpinner.classList.add('hidden')
+   }
 }
 
 loadPhone();
