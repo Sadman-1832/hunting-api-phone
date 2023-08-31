@@ -26,10 +26,10 @@ else{
 // slice for show limited items
 phones = phones.slice(0,12);
 
-console.log(phones.length)
+// console.log(phones.length)
 
 phones.forEach(phone => {
-    console.log(phone)
+    // console.log(phone)
     
     //step-2: create a div
     const phoneCard = document.createElement('div');
@@ -39,8 +39,8 @@ phones.forEach(phone => {
     <div class="card-body">
         <h2 class="card-title">${phone.phone_name}</h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+        <div class="card-actions justify-center">
+            <button onclick="handleShowDetail('${phone.slug}')" class="btn btn-primary">Show Details</button>
         </div>`;
 
         // step-4: appendChild
@@ -51,23 +51,46 @@ phones.forEach(phone => {
 toggleLoadingSpinner(false)
 }
 
+// Show Detail Button
+const handleShowDetail = async(id)=>{
+    console.log('button clicked',id)
+
+    // load single phone data
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    const phone = data.data;
+    
+
+    showPhoneDetails(phone);
+
+}
+
+const showPhoneDetails = (phone) =>{
+    console.log(phone);
+    const phoneName = document.getElementById('show-detail-phone-name');
+    phoneName.innerText = phone.name;
+    // show the modal
+    show_details_modal.showModal()
+}
+
+
 // handle search btn:
 const clickHandler = () =>{
     toggleLoadingSpinner(true);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    console.log(searchText);
+    // console.log(searchText);
     loadPhone(searchText);
 }
 // handle search recap
-const clickHandler2 = () =>{
+// const clickHandler2 = () =>{
     
-    const searchField = document.getElementById('search-field2')
-    const searchText = searchField.value;
-    console.log(searchText);
-    toggleLoadingSpinner(true);
-    loadPhone(searchText);
-}
+//     const searchField = document.getElementById('search-field2')
+//     const searchText = searchField.value;
+//     console.log(searchText);
+//     toggleLoadingSpinner(true);
+//     loadPhone(searchText);
+// }
 
 const toggleLoadingSpinner = (isLoading)=>{
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -79,4 +102,8 @@ const toggleLoadingSpinner = (isLoading)=>{
    }
 }
 
+// handle showAll
+// const handleShowAll = () =>{
+//     clickHandler();
+// }
 loadPhone();
